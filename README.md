@@ -4,18 +4,17 @@
 
 # 🧳 DeepStash
 
-**DeepStash** is your terminal's secret stash — a vibe-coded utility for archiving files and folders in style. With a single command, you can deepstash clutter out of sight while leaving behind a sleek `.ds` tag as a breadcrumb for revival. Think of it as your digital junk drawer — but organized.
+**DeepStash** is a command-line utility for moving files and folders to an external or backup location — while leaving behind `.ds` metadata files so they can be restored to the exact same place. It's not about tidying up your workspace — it's about keeping everything *where it belongs* without using up your drive.
 
 ---
 
 ## ✨ Features
 
 - 🗂️ **Designate a stash directory** with `--init`  
-- 📥 **Deepstash anything** — files, folders, secret plans  
-- ♻️ **Restore with confidence** using `.ds` breadcrumbs  
-- 🔄 **Collision-proof** — safely handles name conflicts  
-- 🔐 **Permission-aware** — gracefully alerts you when stash access is blocked  
-- 🎛️ **Vibe-coded CLI** — minimalist, emoji-forward, and terminal-native  
+- 📥 **Stash anything** — files, folders, backup dumps, side quests  
+- ♻️ **Restore items** via simple `.ds` metadata files  
+- 🔄 **Name collision protection** with automatic unique paths  
+- 🔐 **Permission-aware** with clear and friendly error messages  
 
 ---
 
@@ -24,7 +23,7 @@
 | Command | Description |
 |---------|-------------|
 | `ds --init` | Set your personal stash directory |
-| `ds file_or_folder` | Deepstash a file or directory, leaving a `.ds` placeholder |
+| `ds file_or_folder` | Stash a file or directory, leaving a `.ds` placeholder |
 | `ds file_or_folder.ds` | Restore a stashed item back to its original location |
 | `ds --help` | Show usage instructions |
 | `pip install .` | Install DeepStash globally from source |
@@ -78,9 +77,9 @@ $ ds mixtape.mp3.ds
 
 ---
 
-## 🎨 Style Note
+## 🤖 Note
 
-This whole utility was vibe-coded — minimalist CLI design, emoji-driven output, and 100% terminal joy. Just enough flair to brighten your `ls`.
+This utility was built using a method known as **vibe coding** — describing what you want to an AI assistant and refining the results through iteration. No line-by-line planning — just vibes and fast feedback.
 
 ---
 
