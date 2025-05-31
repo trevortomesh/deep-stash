@@ -6,33 +6,35 @@
   <img alt="Python 3.6+" src="https://img.shields.io/badge/Python-3.6+-blue?logo=python&logoColor=white&style=flat-square"/>
   <img alt="Vibe-Coded" src="https://img.shields.io/badge/Vibe%20Coded-%F0%9F%92%8C-purple?style=flat-square"/>
   <a href="#-dedication">
-    <img alt="Proverbs 9:10" src="https://img.shields.io/badge/Proverbs%209%3A10-%22Fear%20of%20the%20Lord%22-lightgrey?style=flat-square"/>
+    <img alt="Psalm 139:14" src="https://img.shields.io/badge/Psalm%20139%3A14-%F0%9F%95%8A%EF%B8%8F%20Fearfully%20Coded-lightgrey?style=flat-square"/>
   </a>
 </p>
 
 # 🧳 DeepStash
 
-**DeepStash** is a simple command-line tool that helps you move files and folders off your local machine without breaking your workspace.
+**DeepStash** is a command-line tool for safely moving files off your system while keeping your file structure intact.
 
-It was borne out of necessity — my MacBook Air kept running out of space, but I didn’t want to delete anything or lose track of where things belonged. DeepStash lets you offload files to an external drive (or anywhere else) while leaving behind a small `.ds` file that remembers where it came from. When you need it again, one command brings it back.
+It was born out of necessity — my MacBook Air kept running out of space, but I didn’t want to delete or misplace anything. DeepStash lets you move files to an external location while leaving behind a `.ds` file that remembers where the original lived. One command restores it when you need it.
 
 ---
 
 ## 🧠 Philosophy
 
-People are relational creatures — we understand things by how they’re situated in relation to other things. That’s why file structure matters. The way you organize your folders, the exact placement of a note, a project, or a reference file — it reflects how your mind maps your work.
+People are relational creatures — we understand things by how they connect to everything else. Your file structure isn’t just convenience; it’s cognitive scaffolding.
 
-But sometimes, the weight of those files becomes too much. Drives fill up. Machines slow down. **DeepStash** offers a compromise: keep your structure, but offload the weight. You stash a file somewhere else, but leave behind a `.ds` marker — a note to your future self saying, *“Here’s where I put it.”*
+But sometimes, files pile up. Drives bloat. Systems slow down.
+
+**DeepStash** is the middle path: move the file, keep the context. A `.ds` file is left in place as a note — a breadcrumb to its new home — so your mental model stays untouched.
 
 ---
 
 ## 🔍 What It Does
 
-- Moves files or folders to a stash directory of your choice  
-- Leaves behind a `.ds` metadata file that records where the item was stashed  
-- Lets you restore any item back to its original location later  
-- Handles name collisions safely by creating unique destination paths  
-- Gives clear feedback if something goes wrong (missing files, permission issues, etc.)  
+- 📁 Moves files or folders to a custom stash directory  
+- 📝 Leaves behind a `.ds` file with all the metadata needed to restore  
+- 🧭 Restores files to the exact same path with one command  
+- 🧠 Prevents overwrites by generating unique names when needed  
+- 🚫 Friendly errors if something’s missing or inaccessible  
 
 ---
 
@@ -59,23 +61,21 @@ $ ds FinalPaper.pdf.ds
 
 ```bash
 ds --init                   # Set your stash directory
-ds my-folder                # Move and replace with a .ds file
-ds my-folder.ds             # Restore it back
+ds my-folder                # Stash and replace with .ds file
+ds my-folder.ds             # Restore it later
 ```
 
-You can stash multiple files or folders at once:
+You can stash multiple items at once:
 
 ```bash
-ds *.zip
+ds *.mp4
 ```
 
 ---
 
 ## 📄 `.ds` File Format
 
-When you stash something, DeepStash replaces it with a `.ds` file — a small JSON file that records where the original item went. This file allows DeepStash to bring it back to the exact spot later.
-
-Example:
+Each `.ds` file is a simple JSON document that stores stash metadata:
 
 ```json
 {
@@ -87,13 +87,12 @@ Example:
 ```
 
 ### Fields:
+- `original_path` – Where the file was before stashing  
+- `deep_stash_path` – Where it was moved  
+- `size` – Size in bytes  
+- `modified_at` – Last modified timestamp (ISO 8601)  
 
-- **`original_path`** – The full path to where the file or folder originally lived  
-- **`deep_stash_path`** – The destination path in your stash directory  
-- **`size`** – File size in bytes at the time it was stashed  
-- **`modified_at`** – Timestamp of the last modification (ISO 8601 format)  
-
-These metadata files are portable, editable, and safe to version-control if needed. DeepStash uses them to reverse the stash operation with precision.
+These metadata files allow DeepStash to reverse the stash operation with confidence and precision.
 
 ---
 
@@ -101,11 +100,11 @@ These metadata files are portable, editable, and safe to version-control if need
 
 | Command | Description |
 |---------|-------------|
-| `ds --init` | Set the destination stash directory |
-| `ds <item>` | Stash a file or folder |
-| `ds <item>.ds` | Restore it |
-| `ds --help` | Show a helpful summary |
-| `pip install .` | Install locally from source |
+| `ds --init` | Set the stash location |
+| `ds <item>` | Stash the item |
+| `ds <item>.ds` | Restore the item |
+| `ds --help` | Show usage info |
+| `pip install .` | Install from source locally |
 
 ---
 
@@ -117,7 +116,7 @@ cd deepstash
 pip install .
 ```
 
-Or install from any folder containing the source:
+Or from within any local project directory:
 
 ```bash
 pip install .
@@ -127,7 +126,7 @@ pip install .
 
 ## 🤖 Note
 
-This project was built using **vibe coding** — describing what I wanted to an AI assistant and refining the result through fast iterations. No line-by-line plan — just vibes and necessity.
+This tool was created using **vibe coding** — describing what I wanted to an AI assistant, refining the results through iteration. No detailed plan — just intuition, adaptation, and execution.
 
 ---
 
@@ -137,8 +136,9 @@ This project is dedicated to the Lord.
 
 All logic, structure, and order — including the very foundations of programming — reflect the perfection of His design. May this tool, in its small way, point toward the beauty and coherence He has written into the fabric of creation.
 
-> **"The fear of the Lord is the beginning of wisdom, and knowledge of the Holy One is understanding."**  
-> — Proverbs 9:10
+> **"I praise you, for I am fearfully and wonderfully made.  
+> Wonderful are your works; my soul knows it very well."**  
+> — Psalm 139:14
 
 **Soli Deo Gloria.**
 
