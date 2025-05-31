@@ -2,48 +2,44 @@
   <img src="logo.png" alt="DeepStash logo" width="300"/>
 </p>
 
+<p align="center">
+  <img alt="Python 3.6+" src="https://img.shields.io/badge/Python-3.6+-blue?logo=python&logoColor=white&style=flat-square"/>
+  <img alt="Vibe-Coded" src="https://img.shields.io/badge/Vibe%20Coded-%F0%9F%92%8C-purple?style=flat-square"/>
+</p>
+
 # 🧳 DeepStash
 
-**DeepStash** is a command-line utility for moving files and folders to an external or backup location — while leaving behind `.ds` metadata files so they can be restored to the exact same place. It's not about tidying up your workspace — it's about keeping everything *where it belongs* without using up your drive.
+**DeepStash** is a simple command-line tool that helps you move files and folders off your local machine without breaking your workspace.
+
+It was borne out of necessity — my MacBook Air kept running out of space, but I didn’t want to delete anything or lose track of where things belonged. DeepStash lets you offload files to an external drive (or anywhere else) while leaving behind a small `.ds` file that remembers where it came from. When you need it again, one command brings it back.
 
 ---
 
-## ✨ Features
+## 🔍 What It Does
 
-- 🗂️ **Designate a stash directory** with `--init`  
-- 📥 **Stash anything** — files, folders, backup dumps, side quests  
-- ♻️ **Restore items** via simple `.ds` metadata files  
-- 🔄 **Name collision protection** with automatic unique paths  
-- 🔐 **Permission-aware** with clear and friendly error messages  
-
----
-
-## 🔧 Commands at a Glance
-
-| Command | Description |
-|---------|-------------|
-| `ds --init` | Set your personal stash directory |
-| `ds file_or_folder` | Stash a file or directory, leaving a `.ds` placeholder |
-| `ds file_or_folder.ds` | Restore a stashed item back to its original location |
-| `ds --help` | Show usage instructions |
-| `pip install .` | Install DeepStash globally from source |
+- Moves files or folders to a stash directory of your choice  
+- Leaves behind a `.ds` metadata file that records where the item was stashed  
+- Lets you restore any item back to its original location later  
+- Handles name collisions safely by creating unique destination paths  
+- Gives clear feedback if something goes wrong (missing files, permission issues, etc.)  
 
 ---
 
-## 🚀 Installation
-
-Clone and install locally:
+## 🧪 Example
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/deepstash.git
-cd deepstash
-pip install .
-```
+$ ds --init
+📁 Enter deepstash directory path: /Volumes/Archive
+✅ Deepstash directory set to /Volumes/Archive
 
-Or install directly from any folder containing the source:
+$ ds FinalPaper.pdf
+📦 Stashed: FinalPaper.pdf → /Volumes/Archive/FinalPaper.pdf
 
-```bash
-pip install .
+$ ls
+FinalPaper.pdf.ds
+
+$ ds FinalPaper.pdf.ds
+♻️ Restored: /Users/you/Documents/FinalPaper.pdf
 ```
 
 ---
@@ -52,34 +48,49 @@ pip install .
 
 ```bash
 ds --init                   # Set your stash directory
-ds thesis_draft.docx        # Stash the file, leave a .ds tag
-ds thesis_draft.docx.ds     # Restore it exactly where it came from
+ds my-folder                # Move and replace with a .ds file
+ds my-folder.ds             # Restore it back
+```
+
+You can stash multiple files or folders at once:
+
+```bash
+ds *.zip
 ```
 
 ---
 
-## 💡 Sample Session
+## 🛠️ Commands Summary
+
+| Command | Description |
+|---------|-------------|
+| `ds --init` | Set the destination stash directory |
+| `ds <item>` | Stash a file or folder |
+| `ds <item>.ds` | Restore it |
+| `ds --help` | Show a helpful summary |
+| `pip install .` | Install locally from source |
+
+---
+
+## 🚀 Install
 
 ```bash
-$ ds --init
-📁 Enter deepstash directory path: /Volumes/Archive
-✅ Deepstash directory set to /Volumes/Archive
+git clone https://github.com/YOUR_USERNAME/deepstash.git
+cd deepstash
+pip install .
+```
 
-$ ds mixtape.mp3
-📦 Stashed: mixtape.mp3 → /Volumes/Archive/mixtape.mp3
+Or install from any folder containing the source:
 
-$ ls
- mixtape.mp3.ds
-
-$ ds mixtape.mp3.ds
-♻️ Restored: /Users/you/Music/mixtape.mp3
+```bash
+pip install .
 ```
 
 ---
 
 ## 🤖 Note
 
-This utility was built using a method known as **vibe coding** — describing what you want to an AI assistant and refining the results through iteration. No line-by-line planning — just vibes and fast feedback.
+This project was built using **vibe coding** — describing what I wanted to an AI assistant and refining the result through fast iterations. No line-by-line plan — just vibes and necessity.
 
 ---
 
