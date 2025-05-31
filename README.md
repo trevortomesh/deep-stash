@@ -1,5 +1,5 @@
 # DeepStash
-
+![img.png](img.png)
 DeepStash is a command-line utility for stashing away files and folders into a designated directory, leaving behind `.ds` metadata files for easy restoration. It’s useful for clearing workspace clutter while retaining a simple path to recover archived content.
 
 ## Features
