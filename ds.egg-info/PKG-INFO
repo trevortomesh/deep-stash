@@ -1,0 +1,28 @@
+Metadata-Version: 2.4
+Name: ds
+Version: 1.0.0
+Summary: 🧳 A minimal tool for deep-stashing and restoring files and folders using .ds metadata.
+Author: Trevor Tomesh
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Console
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-python
+Dynamic: summary
+
+📦 **ds** is a tiny command-line utility to help you save disk space by deep-stashing files and folders.
+Use it to move items to an external location while keeping a local `.ds` file as a placeholder. Later, use the same command to restore them with ease. Handles wildcards, directories, and metadata cleanup.
+
+✅ Now with improved permission error handling — clear messages when access is denied to either the source or the stash directory.
+
+Commands:
+  • `ds --init` → Set your deepstash folder
+  • `ds <file or folder>` → Deepstash item
+  • `ds <file>.ds` → Restore stashed item
