@@ -1,15 +1,39 @@
-# DeepStash
-![img.png](img.png)
-DeepStash is a command-line utility for stashing away files and folders into a designated directory, leaving behind `.ds` metadata files for easy restoration. It’s useful for clearing workspace clutter while retaining a simple path to recover archived content.
+<p align="center">
+  <img src="logo.png" alt="DeepStash logo" width="300"/>
+</p>
 
-## Features
-- Initialize a designated stash directory
-- Move files or directories into the stash with a `.ds` metadata file left behind
-- Restore items to their original location using `.ds` files
-- Automatically handles name collisions by generating unique paths
-- Provides clear error messages for missing files or permission issues
+# 🧳 DeepStash
 
-## Installation
+**DeepStash** is your terminal's secret stash — a vibe-coded utility for archiving files and folders in style. With a single command, you can deepstash clutter out of sight while leaving behind a sleek `.ds` tag as a breadcrumb for revival. Think of it as your digital junk drawer — but organized.
+
+---
+
+## ✨ Features
+
+- 🗂️ **Designate a stash directory** with `--init`  
+- 📥 **Deepstash anything** — files, folders, secret plans  
+- ♻️ **Restore with confidence** using `.ds` breadcrumbs  
+- 🔄 **Collision-proof** — safely handles name conflicts  
+- 🔐 **Permission-aware** — gracefully alerts you when stash access is blocked  
+- 🎛️ **Vibe-coded CLI** — minimalist, emoji-forward, and terminal-native  
+
+---
+
+## 🔧 Commands at a Glance
+
+| Command | Description |
+|---------|-------------|
+| `ds --init` | Set your personal stash directory |
+| `ds file_or_folder` | Deepstash a file or directory, leaving a `.ds` placeholder |
+| `ds file_or_folder.ds` | Restore a stashed item back to its original location |
+| `ds --help` | Show usage instructions |
+| `pip install .` | Install DeepStash globally from source |
+
+---
+
+## 🚀 Installation
+
+Clone and install locally:
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/deepstash.git
@@ -17,38 +41,49 @@ cd deepstash
 pip install .
 ```
 
-## Usage
+Or install directly from any folder containing the source:
 
 ```bash
-ds --init                   # Configure your stash directory
-ds notes.txt                # Stash the file and leave behind a .ds file
-ds notes.txt.ds             # Restore the file from the stash
+pip install .
 ```
 
-## Help
+---
+
+## ⚙️ Usage
 
 ```bash
-ds --help
+ds --init                   # Set your stash directory
+ds thesis_draft.docx        # Stash the file, leave a .ds tag
+ds thesis_draft.docx.ds     # Restore it exactly where it came from
 ```
 
-Displays usage instructions.
+---
 
-## Example
+## 💡 Sample Session
 
 ```bash
 $ ds --init
-Enter deepstash directory path: /Volumes/Archive
-Deepstash directory set to /Volumes/Archive
+📁 Enter deepstash directory path: /Volumes/Archive
+✅ Deepstash directory set to /Volumes/Archive
 
-$ ds report.pdf
-Stashed: report.pdf → /Volumes/Archive/report.pdf
+$ ds mixtape.mp3
+📦 Stashed: mixtape.mp3 → /Volumes/Archive/mixtape.mp3
 
 $ ls
- report.pdf.ds
+ mixtape.mp3.ds
 
-$ ds report.pdf.ds
-Restored: /Users/yourname/Desktop/report.pdf
+$ ds mixtape.mp3.ds
+♻️ Restored: /Users/you/Music/mixtape.mp3
 ```
 
-## License
-MIT License
+---
+
+## 🎨 Style Note
+
+This whole utility was vibe-coded — minimalist CLI design, emoji-driven output, and 100% terminal joy. Just enough flair to brighten your `ls`.
+
+---
+
+## 📄 License
+
+Licensed under the [MIT License](LICENSE).
