@@ -3,10 +3,14 @@
 </p>
 
 <p align="center">
+  <img src="logo.png" alt="DeepStash logo" width="300"/>
+</p>
+
+<p align="center">
   <img alt="Python 3.6+" src="https://img.shields.io/badge/Python-3.6+-blue?logo=python&logoColor=white&style=flat-square"/>
   <img alt="Vibe-Coded" src="https://img.shields.io/badge/Vibe%20Coded-%F0%9F%92%8C-purple?style=flat-square"/>
   <a href="#-dedication">
-    <img alt="Psalm 139:14" src="https://img.shields.io/badge/Psalm%20139%3A14-%F0%9F%95%8A%EF%B8%8F%20Fearfully%20Coded-lightgrey?style=flat-square"/>
+    <img alt="Psalm 139:14" src="https://img.shields.io/badge/Psalm%20139%3A14-%F0%9F%95%8A%EF%B8%8F%20Fearfully%20Coded-555555?style=flat-square"/>
   </a>
 </p>
 
