@@ -10,10 +10,12 @@ Classifier: Environment :: Console
 Classifier: Topic :: Utilities
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
+Requires-Dist: tqdm
 Dynamic: author
 Dynamic: classifier
 Dynamic: description
 Dynamic: description-content-type
+Dynamic: requires-dist
 Dynamic: requires-python
 Dynamic: summary
 

@@ -3,6 +3,7 @@ from setuptools import setup
 setup(
     name='ds',
     version='1.0.0',
+    install_requires=['tqdm'],
     py_modules=['ds'],
     entry_points={
         'console_scripts': [
