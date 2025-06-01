@@ -6,8 +6,9 @@
   <img alt="Python 3.6+" src="https://img.shields.io/badge/Python-3.6+-blue?logo=python&logoColor=white&style=flat-square"/>
   <img alt="Vibe-Coded" src="https://img.shields.io/badge/Vibe%20Coded-%F0%9F%92%8C-purple?style=flat-square"/>
   <a href="#-dedication">
-     <img alt="fearfully-coded" src="https://img.shields.io/badge/Fearfully%20Coded-gray?style=flat-square&labelColor=2f2f2f&color=555555"/>
-  </a>
+  <img alt="Fearfully Coded" src="https://img.shields.io/badge/Fearfully%20Coded-lightgrey?style=flat-square"/>
+  <img alt="Dove" src="https://img.shields.io/badge/-🕊️-222222?style=flat-square"/>
+</a>
 </p>
 
 # 🧳 DeepStash
