@@ -130,7 +130,7 @@ This tool was created using **vibe coding** — describing what I wanted to an A
 
 ---
 
-## 🙏 Dedication
+## 🕊️ Dedication
 
 This project is dedicated to the Lord.
 
