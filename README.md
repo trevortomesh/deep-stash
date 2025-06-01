@@ -4,9 +4,11 @@
 
 <p align="center">
   <img alt="Python 3.6+" src="https://img.shields.io/badge/Python-3.6+-blue?logo=python&logoColor=white&style=flat-square"/>
-  <img alt="Vibe-Coded" src="https://img.shields.io/badge/Vibe%20Coded-%F0%9F%92%8C-purple?style=flat-square"/>
-  <a href="#-dedication">
-<img alt="Fearfully Coded" src="https://img.shields.io/badge/🕊️Fearfully%20Coded-blue?style=flat-square"/>
+  <a href="#vibecoding">
+  <img alt="VibeCoded" src="https://img.shields.io/badge/🌀Vibecoded-GPT%204o-blueviolet?style=flat-square"/>
+</a>
+<a href="https://github.com/trevortomesh/fearfully-coded">
+  <img alt="Fearfully Coded 🕊️" src="https://img.shields.io/badge/Fearfully%20Coded%20🕊️-lightgrey?style=flat-square"/>
 </a>
 </p>
 
@@ -124,23 +126,21 @@ pip install .
 
 ---
 
-## 🤖 Note
+## 🌀Vibecoding
 
 This tool was created using **vibe coding** — describing what I wanted to an AI assistant, refining the results through iteration. No detailed plan — just intuition, adaptation, and execution.
 
 ---
 
-## 🕊️ Dedication
+## 🙏 Project Dedication
 
-This project is dedicated to the Lord.
+This project is dedicated to the Lord Jesus Christ.
 
-All logic, structure, and order — including the very foundations of programming — reflect the perfection of His design. May this tool, in its small way, point toward the beauty and coherence He has written into the fabric of creation.
+May every line of code, every design decision, and every contribution serve not just utility, but truth.
+May this work be a small part of restoring order, creating beauty, and bringing light where there is darkness.
 
-> **"I praise you, for I am fearfully and wonderfully made.  
-> Wonderful are your works; my soul knows it very well."**  
-> — Psalm 139:14
-
-**Soli Deo Gloria.**
+>“Whatever you do, work at it with all your heart, as working for the Lord, not for human masters.”
+>— Colossians 3:23
 
 ---
 
