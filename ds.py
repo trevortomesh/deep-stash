@@ -10,6 +10,8 @@ except ImportError:
     print("⚠️ tqdm not installed. Progress bars will be disabled.")
     def tqdm(x, *a, **kw): return x
 
+VERBOSE = False
+
 def init():
     """Initialize DeepStash by setting the root directory for stashed files."""
     # Prompt the user for a directory to use as the DeepStash root
@@ -90,7 +92,7 @@ def deepstash_item(target, config):
             # Remove the original directory after copying
             shutil.rmtree(target)
         else:
-            print("📄 Copying file with progress...")
+            print("📄 Copying file...")
             # Copy the file in chunks to show a gradual progress bar
             total_size = os.path.getsize(target)
             chunk_size = 1024 * 1024  # 1 MiB per chunk
@@ -124,6 +126,52 @@ def deepstash_item(target, config):
         json.dump(ghost, f)
     print(f"📦 Stashed: {target} → {dest}")
 
+def safe_copytree(src, dst, max_errors_per_dir=5):
+    total_skipped = 0
+    errors = []
+    for root, dirs, files in os.walk(src):
+        rel_root = os.path.relpath(root, src)
+        # Early skip for directories full of unreadable .ds files
+        if all(name.endswith(".ds") for name in files) and files:
+            unreadable_ds = 0
+            for name in files:
+                file_path = os.path.join(root, name)
+                try:
+                    with open(file_path, "rb"):
+                        pass
+                except Exception:
+                    unreadable_ds += 1
+            if unreadable_ds == len(files):
+                print(f"🚫 Skipping directory '{rel_root}' — all files are unreadable .ds files.")
+                continue
+        error_count = 0
+        skip_count = 0
+        first_skip = None
+        skip_messages = []
+        for name in files:
+            src_file = os.path.join(root, name)
+            rel_path = os.path.relpath(src_file, src)
+            dst_file = os.path.join(dst, rel_path)
+            os.makedirs(os.path.dirname(dst_file), exist_ok=True)
+            try:
+                shutil.copy2(src_file, dst_file)
+                error_count = 0  # reset on success
+            except Exception as e:
+                errors.append((src_file, dst_file, str(e)))
+                error_count += 1
+                skip_count += 1
+                total_skipped += 1
+                if VERBOSE:
+                    print(f"⚠️ Skipping {src_file}: {e}")
+                if skip_count == 1:
+                    first_skip = src_file
+                if error_count >= max_errors_per_dir:
+                    print(f"🚫 Too many errors in directory '{rel_root}'. Skipping the rest of this directory.")
+                    break
+    if total_skipped > 0:
+        print(f"\n⚠️ Total files skipped during copy: {total_skipped}\n")
+    return errors
+
 def restore(ghost_file):
     """Restore a stashed file or directory using its .ds ghost metadata file."""
     if not os.path.exists(ghost_file):
@@ -133,6 +181,16 @@ def restore(ghost_file):
     # Load ghost metadata from the .ds file
     with open(ghost_file, "r") as f:
         ghost = json.load(f)
+
+    # Backward compatibility: convert old format to new format
+    if "deep_stash_path" in ghost and "original_path" in ghost and "deep" not in ghost and "original" not in ghost:
+        ghost["deep"] = ghost.get("deep_stash_path")
+        ghost["original"] = ghost.get("original_path")
+        if "type" in ghost and ghost["type"] == "folder":
+            ghost["type"] = "dir"
+        elif "type" in ghost and ghost["type"] == "file":
+            ghost["type"] = "file"
+        print("🔁 Converted old .ds format to new format.")
 
     # Ensure all required keys are present
     required_keys = ["original", "deep", "type"]
@@ -168,7 +226,7 @@ def restore(ghost_file):
 
     if ghost["type"] == "dir":
         # Copy the stashed directory back to the original location, merging if needed
-        shutil.copytree(ghost["deep"], ghost["original"], dirs_exist_ok=True)
+        safe_copytree(ghost["deep"], ghost["original"])
         # Remove the stashed directory
         shutil.rmtree(ghost["deep"], ignore_errors=True)
     else:
@@ -177,17 +235,27 @@ def restore(ghost_file):
             return
         print(f"🔄 Restoring: {ghost['deep']} → {ghost['original']}")
         print("📄 Restoring file with progress...")
+        # Ensure the destination directory exists
+        os.makedirs(os.path.dirname(ghost["original"]), exist_ok=True)
         # Copy the file in chunks to show a gradual progress bar
         total_size = os.path.getsize(ghost["deep"])
         chunk_size = 1024 * 1024  # 1 MiB per chunk
-        with open(ghost["deep"], "rb") as fsrc, open(ghost["original"], "wb") as fdst:
-            with tqdm(total=total_size, unit="B", unit_scale=True, desc="♻️ Progress") as pbar:
-                while True:
-                    chunk = fsrc.read(chunk_size)
-                    if not chunk:
-                        break
-                    fdst.write(chunk)
-                    pbar.update(len(chunk))
+        try:
+            with open(ghost["deep"], "rb") as fsrc, open(ghost["original"], "wb") as fdst:
+                with tqdm(total=total_size, unit="B", unit_scale=True, desc="♻️ Progress") as pbar:
+                    while True:
+                        try:
+                            chunk = fsrc.read(chunk_size)
+                        except OSError as e:
+                            print(f"❌ Failed to read from '{ghost['deep']}': {e}. Skipping file.")
+                            return
+                        if not chunk:
+                            break
+                        fdst.write(chunk)
+                        pbar.update(len(chunk))
+        except OSError as e:
+            print(f"❌ Cannot open one of the files for copying: {e}. Skipping.")
+            return
         # Remove the stashed file
         os.remove(ghost["deep"])
 
@@ -197,7 +265,12 @@ def restore(ghost_file):
 
 def main():
     """Parse command-line arguments and execute the appropriate DeepStash action."""
+    global VERBOSE
     args = sys.argv[1:]
+
+    if "--verbose" in args:
+        VERBOSE = True
+        args.remove("--verbose")
 
     # Display help information if requested
     if args and args[0] in ("--help", "-h"):
@@ -224,6 +297,14 @@ Examples:
   ds mynotes.txt.ds
   ds photos/ '!.raw' '!.tmp'
   ds backup.db.ds '!.bak'
+
+Advanced Options:
+  --verbose
+    Show detailed messages for each skipped file.
+
+Automatic Skipping:
+  If too many files in a directory fail to copy, DeepStash will automatically skip the rest of that directory.
+  If all files in a directory are unreadable `.ds` files, that directory will be skipped without prompt.
 """)
         return
 
