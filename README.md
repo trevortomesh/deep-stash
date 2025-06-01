@@ -7,7 +7,6 @@
   <img alt="Vibe-Coded" src="https://img.shields.io/badge/Vibe%20Coded-%F0%9F%92%8C-purple?style=flat-square"/>
   <a href="#-dedication">
     <img alt="Fearfully Coded" src="https://img.shields.io/badge/Fearfully%20Coded-lightgrey?style=flat-square"/>
-    <img alt="Dove" src="https://img.shields.io/badge/-🕊️-222222?style=flat-square"/>
   </a>
 </p>
 
