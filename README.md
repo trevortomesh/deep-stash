@@ -3,6 +3,10 @@
 </p>
 
 <p align="center">
+  <em>Part of the <a href="https://github.com/trevortomesh/stash">Stash Ecosystem</a> — tools for clean digital minimalism and controlled file flow.</em>
+</p>
+
+<p align="center">
   <img alt="Python 3.6+" src="https://img.shields.io/badge/Python-3.6+-blue?logo=python&logoColor=white&style=flat-square"/>
   <img alt="Vibe-Coded" src="https://img.shields.io/badge/Vibe%20Coded-%F0%9F%92%8C-purple?style=flat-square"/>
   <a href="#-dedication">
