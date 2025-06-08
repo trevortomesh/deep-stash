@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.png" alt="DeepStash logo" width="300"/>
+  <img src="logo.png" alt="deepstash logo" width="300"/>
 </p>
 
 <p align="center">
@@ -14,11 +14,17 @@
   </a>
 </p>
 
-# 🧳 DeepStash
+# 🧳 deepstash
 
-**DeepStash** is a command-line tool for safely moving files off your system while keeping your file structure intact.
+**deepstash** is a command-line tool for safely moving files off your system while keeping your file structure intact.
 
-It was born out of necessity — my MacBook Air kept running out of space, but I didn’t want to delete or misplace anything. DeepStash lets you move files to an external location while leaving behind a `.ds` file that remembers where the original lived. One command restores it when you need it.
+It was born out of necessity — my MacBook Air kept running out of space, but I didn’t want to delete or misplace anything. deepstash lets you move files to an external location while leaving behind a `.ds` file that remembers where the original lived. One command restores it when you need it.
+
+__deepstash__ is the parent project of the _Stash Ecosystem_ that includes:
+- [Stash](https://github.com/trevortomesh/stash)
+- [deepstash](https://github.com/trevortomesh/deep-stash)
+- [StashBox (coming soon)](https://github.com/trevortomesh/stash-box)
+
 
 ----
 ## 🧠 Philosophy
@@ -27,7 +33,7 @@ People are relational creatures — we understand things by how they connect to 
 
 But sometimes, files pile up. Drives bloat. Systems slow down.
 
-**DeepSTASH** is the middle path: move the file, keep the context. A `.ds` file is left in place as a note — a breadcrumb to its new home — so your mental model stays untouched.
+**deepstash** is the middle path: move the file, keep the context. A `.ds` file is left in place as a note — a breadcrumb to its new home — so your mental model stays untouched.
 
 ----
 ## 🔍 What It Does
@@ -103,7 +109,7 @@ Each `.ds` file is a simple JSON document that stores stash metadata:
 - `deep` – location where the item was moved  
 - `type` – either `"file"` or `"dir"`  
 
-These metadata files allow DeepStash to reverse the stash operation with confidence and precision.
+These metadata files allow deepstash to reverse the stash operation with confidence and precision.
 
 ----
 ## 🛠️ Commands Summary
@@ -119,11 +125,11 @@ These metadata files allow DeepStash to reverse the stash operation with confide
 ----
 ## 🛡️ Error Handling & Auto-Fix
 
-- If a `.ds` file is missing keys, DeepStash attempts to auto-repair it and confirms success with a “✅ Auto-fix successful…” message.  
-- If the stash path (`deep`) no longer exists, DeepStash prints:  
+- If a `.ds` file is missing keys, deepstash attempts to auto-repair it and confirms success with a “✅ Auto-fix successful…” message.  
+- If the stash path (`deep`) no longer exists, deepstash prints:  
   ❌ Cannot restore because the stashed item at '…' does not exist.  
   ℹ️ You may need to reconnect the external drive or adjust permissions.  
-- If a `.ds` record’s `type` is “file” but actually points to a directory, DeepStash prints:  
+- If a `.ds` record’s `type` is “file” but actually points to a directory, deepstash prints:  
   ❌ Error: Stashed item at '…' is a directory, but marked as type 'file'. Skipping.  
 
 ----
